@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>فضالي - {{ blog.title }}</title>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+      <!-- faveicon -->
+      <link rel="icon" href="https://raw.githubusercontent.com/Cat9199/fadalyoffice/main/images/logo-removebg-preview.png" type="image/x-icon">
+      <!-- seo handeling section  -->
+<meta name="description" content="{{ blog.content|slice(0, 150) }}">
+<meta name="keywords" content="مكتب فضالي, مكتب فني, مكتب مساحة, مكتب هندسي, مكتب هندسي في القاهرة, مكتب هندسي في مصر, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هن" />
+<style>
+            body {
+                  font-family: 'Cairo', sans-serif;
+                  direction: rtl;
+            }
+
+            .bg-gradient {
+                  background: linear-gradient(to right, #FF6F00, #FF8E00);
+            }
+
+            .header-logo img {
+                  height: 50px;
+            }
+
+            .sidebar {
+                  border-left: 1px solid #ddd;
+                  padding-left: 10px;
+            }
+
+
+
+
+      </style>
+</head>
+
+<body class="bg-gray-100">
+      <!-- Header -->
+      <header class="bg-gradient text-white py-4 shadow-lg">
+            <div class="container mx-auto flex justify-between items-center px-4">
+                  <div class="flex items-center header-logo">
+                       
+                        <span class="ml-3 text-2xl font-bold">فضالي</span>
+                  </div>
+                  <nav>
+                        <ul class="flex space-x-4">
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">الرئيسية</a></li>
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">المقالات</a></li>
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">من نحن</a></li>
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">اتصل بنا</a></li>
+                        </ul>
+                  </nav>
+            </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="container mx-auto my-12 px-2 grid grid-cols-4 gap-8">
+            <!-- Sidebar -->
+            <div class="col-span-1">
+                  <div class="sidebar">
+                        <h3 class="text-xl font-bold mb-2">مقالات ذات صلة</h3>
+                        <!-- Sidebar Cards -->
+                        {% for blog in AllBlogs %}
+                        <div class="sidebar-card bg-white shadow-lg rounded-lg overflow-hidden mb-2">
+                              <img src="/img/{{blog.imgId}}" alt="Related Article Image"
+                                    class="w-20 object-cover float-right mr-4 mt-2 mb-2 rounded-lg">
+                              <div class="p-4">
+                                    <a href="/blog/{{blog.id}}" class="text-blue-500 hover:underline block mb-2">{{blog.title}}</a>
+                                    <div class="flex items-center text-gray-600">
+                                          <span class="mr-2"><i class="fas fa-eye"></i> {{blog.views}} مشاهدة</span>
+                                    </div>
+                              </div>
+                        </div>
+                        {% endfor %}
+                  </div>
+            </div>
+
+            <!-- Article Content -->
+            <div class="col-span-3 bg-white shadow-lg rounded-lg overflow-hidden">
+                  <img src="/img/{{blog.imgId}}" alt="Article Image" class="w-full h-96 object-cover">
+                  <div class="p-6">
+                        <h1 class="text-4xl font-bold mb-4">{{ blog.title}}</h1>
+                        <div class="flex items-center justify-between text-gray-600 mb-4">
+                              <span><i class="fas fa-eye"></i> {{blog.views}} مشاهدة</span>
+                              <span><i class="fas fa-thumbs-up"></i> {{blog.likes}} إعجابات</span>
+                        </div>
+                        <p class="text-lg mb-4">{{ blog.content|safe}}</p>
+                  </div>
+            </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-gray-800 text-white py-6">
+            <div class="container mx-auto text-center">
+                  <p>&copy; 2024 فضالي - مكتب فني للمساحة. جميع الحقوق محفوظة.</p>
+            </div>
+      </footer>
+
+      <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>فضالي - مكتب فني للمساحة</title>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+      <link rel="icon" href="https://raw.githubusercontent.com/Cat9199/fadalyoffice/main/images/logo-removebg-preview.png"
+            type="image/x-icon">
+      <meta name="keywords"
+            content="مكتب فضالي, مكتب فني, مكتب مساحة, مكتب هندسي, مكتب هندسي في القاهرة, مكتب هندسي في مصر, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هندسي في الهرم, مكتب هندسي في الجيزة, مكتب هن" />
+
+      <style>
+            body {
+                  font-family: 'Cairo', sans-serif;
+                  direction: rtl;
+            }
+
+            .bg-gradient {
+                  background: linear-gradient(to right, #FF6F00, #FF8E00);
+            }
+
+            .header-logo img {
+                  height: 50px;
+            }
+      </style>
+</head>
+
+<body class="bg-gray-100">
+      <header class="bg-gradient text-white py-4 shadow-lg">
+            <div class="container mx-auto flex justify-between items-center px-4">
+                  <div class="flex items-center header-logo">
+                   
+                        <span class="ml-3 text-2xl font-bold">فضالي</span>
+                  </div>
+                  <nav>
+                        <ul class="flex space-x-4">
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">الرئيسية</a></li>
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">المقالات</a></li>
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">من نحن</a></li>
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">اتصل بنا</a></li>
+                        </ul>
+                  </nav>
+            </div>
+      </header>
+      <section class="bg-cover bg-center h-64 text-white flex items-center justify-center"
+            style="background-image: url('https://fadaly-website.vercel.app/assets/ser2-DakfNpmR.jpeg');">
+            <div class="text-center bg-black bg-opacity-50 p-4 rounded-lg">
+                  <h1 class="text-5xl font-bold mb-4">مرحبا بكم في فضالي</h1>
+                  <p class="text-lg">موقع متخصص في مقالات الهندسة المساحية</p>
+            </div>
+      </section>
+      <section class="container mx-auto my-12 px-4">
+            <h2 class="text-3xl font-bold mb-6">أحدث المقالات</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                  <!-- Article Card 1 -->
+                   {% for blog in last_blogs %}
+                   
+                  <div
+                        class="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                        <img src="/img/{{blog.imgId}}" alt="Article Image"
+                              class="w-full h-48 object-cover">
+                        <div class="p-4">
+                              <h3 class="text-xl font-bold mb-2">{{blog.title}}</h3>
+
+                              <div class="flex items-center justify-between text-gray-600">
+                                    <span><i class="fas fa-eye"></i> {{blog.views}} مشاهدات</span>
+                                    <span><i class="fas fa-thumbs-up"></i> {{blog.likes}} إعجابات</span>
+                              </div>
+                              <a href="#" class="block mt-4 text-orange-500 hover:underline">اقرأ المزيد</a>
+                        </div>
+                  </div>
+                  {% endfor %}
+            </div>
+      </section>
+
+      <main class="container mx-auto my-12 px-4">
+            <section class="container mx-auto my-12 px-4">
+                  <h2 class="text-3xl font-bold mb-6">أحدث المقالات</h2>
+                  <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Article Card 1 -->
+                        {% for blog in blogs %}
+                        
+                        <div class="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                              <img src="/img/{{blog.imgId}}" alt="Article Image" class="w-full h-48 object-cover">
+                              <div class="p-4">
+                                    <h3 class="text-xl font-bold mb-2">{{blog.title}}</h3>
+                        
+                                    <div class="flex items-center justify-between text-gray-600">
+                                          <span><i class="fas fa-eye"></i> {{blog.views}} مشاهدات</span>
+                                          <span><i class="fas fa-thumbs-up"></i> {{blog.likes}} إعجابات</span>
+                                    </div>
+                                    <a href="#" class="block mt-4 text-orange-500 hover:underline">اقرأ المزيد</a>
+                              </div>
+                        </div>
+                        {% endfor %}
+            
+      
+                  </div>
+       
+      </main>
+      <footer class="bg-gray-800 text-white py-6">
+            <div class="container mx-auto text-center">
+                  <p>&copy; 2024 فضالي - مكتب فني للمساحة. جميع الحقوق محفوظة.</p>
+
+            </div>
+      </footer>
+      <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

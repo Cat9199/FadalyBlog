@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Submit Blog - فضالي</title>
+      <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+      <style>
+            body {
+                  font-family: 'Cairo', sans-serif;
+                  direction: rtl;
+            }
+
+            .bg-gradient {
+                  background: linear-gradient(to right, #FF6F00, #FF8E00);
+            }
+
+            .header-logo img {
+                  height: 50px;
+            }
+      </style>
+</head>
+
+<body class="bg-gray-100">
+      <header class="bg-gradient text-white py-4 shadow-lg">
+            <div class="container mx-auto flex justify-between items-center px-4">
+                  <div class="flex items-center header-logo">
+                        <span class="ml-3 text-2xl font-bold">فضالي</span>
+                  </div>
+                  <nav>
+                        <ul class="flex space-x-4">
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">الرئيسية</a></li>
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">المقالات</a></li>
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">من نحن</a></li>
+                              <li><a class="text-white hover:text-yellow-500 px-2 py-1 rounded transition duration-300"
+                                          href="/">اتصل بنا</a></li>
+                        </ul>
+                  </nav>
+            </div>
+      </header>
+      <section class="container mx-auto my-12 px-4">
+            
+            <h1 class="text-3xl font-bold mb-8 text-center">إرسال مقال جديد</h1>
+            <form action="/add" method="post" enctype="multipart/form-data"
+                  class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+                  {% if msg %}
+                  <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                        <strong class="font-bold">اضافه</strong>
+                        <span class="block sm:inline">{{ msg }}</span>
+                  </div>
+                  {% endif %}
+                  <div class="mb-4">
+                        <label for="blogTitle" class="block text-xl mb-2">عنوان المقال:</label>
+                        <input type="text" id="blogTitle" name="blogTitle"
+                              class="w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-yellow-500"
+                              placeholder="أدخل عنوان المقال هنا..." required>
+                  </div>
+                  <div class="mb-4">
+                        <label for="blogImage" class="block text-xl mb-2">صورة المقال:</label>
+                        <input type="file" id="blogImage" name="blogImage"
+                              class="w-full border-2 border-gray-200 p-3 rounded outline-none focus:border-yellow-500"
+                              accept="image/*" required>
+                  </div>
+                  <div class="mb-6">
+                        <label for="editor" class="block text-xl mb-2">محتوى المقال:</label>
+                        <div id="editor" class="bg-gray-100 rounded-lg">
+                              <p>مرحبا بالعالم!</p>
+                              <p>نص مشدد <strong>بالخط العريض</strong></p>
+                              <p><br></p>
+                        </div>
+                  </div>
+                  <button type="submit"
+                        class="bg-gradient hover:bg-yellow-500 text-white py-2 px-4 rounded-lg shadow-lg transition duration-300">إرسال</button>
+            </form>
+      </section>
+      <footer class="bg-gray-800 text-white py-6">
+            <div class="container mx-auto text-center">
+                  <p>&copy; 2024 فضالي - مكتب فني للمساحة. جميع الحقوق محفوظة.</p>
+            </div>
+      </footer>
+
+      <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+      <script>
+            const quill = new Quill('#editor', {
+                  theme: 'snow'
+            });
+
+            document.querySelector('form').onsubmit = function () {
+                  const editorHtml = document.querySelector('#editor .ql-editor').innerHTML;
+                  const hiddenInput = document.createElement('input');
+                  hiddenInput.setAttribute('type', 'hidden');
+                  hiddenInput.setAttribute('name', 'blogContent');
+                  hiddenInput.setAttribute('value', editorHtml);
+                  document.querySelector('form').appendChild(hiddenInput);
+                  return true;
+            };
+      </script>
+</body>
+
+</html>
